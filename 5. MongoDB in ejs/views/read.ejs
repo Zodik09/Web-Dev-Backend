@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/read.css">
+    <title>Start</title>
+</head>
+
+<body>
+    <nav>
+        <a href="/">&lt;Back to Home</a>
+    </nav>
+    <div id="main">
+        <h1>Registered Users</h1>
+        <div class="cardbox">
+            <% if(users.length>0){ %>
+                <% users.forEach((e)=>{ %>
+                    <div class="card">
+                        <div class="img"><img src="<%= e.image %>" alt=""></div>
+                        <h2>
+                            <%= e.name %>
+                        </h2>
+                        <h5>
+                            <%= e.email %>
+                        </h5>
+                        <div class="options">
+                            <a href="/read">Read</a>
+                            <a href="/edit">Edit</a>
+                            <a href="/delete/<%= e._id %>">Delete</a>
+                        </div>
+                    </div>
+                    <% })%>
+                        <% } else { %>
+                            <h6>No Registered user.</h6>
+                            <% } %>
+
+        </div>
+    </div>
+    <!-- <script src="/javascripts/script.js"></script> -->
+</body>
+
+</html>

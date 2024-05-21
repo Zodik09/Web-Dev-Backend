@@ -9,12 +9,15 @@
 </head>
 
 <body>
+    <nav>
+        <a href="/read">Registered Users&gt;</a>
+    </nav>
     <div id="main">
-        <h1>Registration Form.</h1>
-        <form action="/submit" method="post">
-            <input type="text" name="name" placeholder="Enter your name here......">
-            <input type="email" name="email" placeholder="Enter your email here......">
-            <input type="text" name="image" placeholder="Paste the image URL here...">
+        <h1>Registration Form</h1>
+        <form action="/create" method="post">
+            <input type="text" name="name" placeholder="Enter your name here......" required>
+            <input type="email" name="email" placeholder="Enter your email here......" required>
+            <input type="text" name="image" placeholder="Paste the image URL here..." required>
             <button type="submit">Submit</button>
         </form>
     </div>

@@ -19,38 +19,28 @@ app.use(function (req, res, next) {
     next();
 });
 app.get('/', (req, res) => {
-    res.render("index");
-})
-
-app.get('/create', async (req, res) => {
-    var createdUser = await userModel.create({
-        name: 'Babu',
-        username: 'Rani',
-        email: 'karma@gmail.com',
-        age: 23
+    res.render('index')
+});
+app.get('/read',async (req, res) => {
+    let users = await userModel.find();
+    res.render('read', {users})
+});
+app.get('/delete/:id',async (req, res) => {
+    let users = await userModel.findOneAndDelete({_id: req.params.id});
+    res.redirect ('/read')
+});
+app.post('/create',async (req, res) => {
+    let {name, email, image} = req.body;
+    let createdUser = await userModel.create({
+        name,
+        email,
+        image
     })
-    res.send(createdUser)
-    console.log("Created......");
-})
+    // res.send(createdUser);
+    res.redirect('/read');
+});
 
-app.get('/update', async (req, res) => {
-    let updatedUser = await userModel.findOneAndUpdate({ username: 'Karma' }, { name: 'Adarsh Vishwakarma' }, { new: true })
-    res.send(updatedUser)
-    console.log("Done Updating.");
-})
 
-// To find or read all users you can find().
-app.get('/read', async (req, res) => {
-    var users = await userModel.find()
-    res.send(users)
-    console.log("Found it......");
-})
-
-app.get('/delete', async (req, res) => {
-    var users = await userModel.findOneAndDelete({ username: 'Karma' });
-    res.send(users)
-    console.log("Deleted......");
-})
 
 app.listen(3000, () => {
     console.log("Listening......");
